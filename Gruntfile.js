@@ -114,18 +114,16 @@ module.exports = function(grunt) {
 
   grunt.registerTask('upload', function(n) {
     if(grunt.option('prod')) {
+      'concat'
       // add your production server task here
     } else {
       grunt.task.run([ 'server-dev' ]);
     }
   });
 
-  grunt.registerTask('deploy', [
-    'concat'
-  ]);
+  // grunt.registerTask('deploy', [
+  //   'concat'
+  // ]);
 
-  grunt.registerTask('default', [
-    'deploy'
-  ]);
 
 };
