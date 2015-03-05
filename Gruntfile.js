@@ -6,6 +6,13 @@ module.exports = function(grunt) {
       dist: {
         src: ['public/client/*.js'],
         dest: 'public/dist/app.js'
+      },
+      lib: {
+        src: ['public/lib/jquery.js',
+        'public/lib/underscore.js',
+        'public/lib/handlebars.js',
+        'public/lib/backbone.js'],
+        dest: 'public/dist/libs.js'
       }
     },
 
@@ -51,8 +58,8 @@ module.exports = function(grunt) {
 
     cssmin: {
       minify: {
-        src: 'public/lib/style.css',
-        dest: 'public/lib/style.min.css'
+        src: 'public/style.css',
+        dest: 'public/dist/style.min.css'
       }
     },
 
@@ -110,18 +117,24 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('build', [
-    'concat'
+    'jshint',
+    'concat',
+    'uglify',
+    'cssmin'
   ]);
 
   grunt.registerTask('upload', function(n) {
     if(grunt.option('prod')) {
+      // production tasks here
     } else {
       grunt.task.run([ 'server-dev' ]);
     }
   });
 
   grunt.registerTask('deploy', [
-    'concat'
+    // development
+    'build',
+    'watch'
   ]);
 
 };
