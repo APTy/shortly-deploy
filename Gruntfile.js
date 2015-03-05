@@ -47,7 +47,7 @@ module.exports = function(grunt) {
         'gruntfile.js', 'public/client/**/*.js', 'test/**/*.js'
       ],
       options: {
-        force: 'true',
+        force: 'false',
         jshintrc: '.jshintrc',
         ignores: [
           'public/lib/**/*.js',
@@ -133,6 +133,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('deploy', [
     // development
+    'test',
     'build',
     'watch'
   ]);
