@@ -7,7 +7,7 @@ module.exports = function(grunt) {
         separator: ';'
       },
       dist: {
-        src: ['public/client/*.js'],
+        src: ['public/client/**/*.js'],
         dest: 'public/dist/<%= pkg.name %>.js'
       }
     },
@@ -28,11 +28,19 @@ module.exports = function(grunt) {
     },
 
     uglify: {
+      options: {
+        banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
+      },
+      dist: {
+        files: {
+          'dist/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
+        }
+      }
     },
 
     jshint: {
       files: [
-        // Add filespec list here
+        'gruntfile.js', 'public/client/**/*.js', 'test/**/*.js'
       ],
       options: {
         force: 'true',
@@ -45,6 +53,10 @@ module.exports = function(grunt) {
     },
 
     cssmin: {
+      minify: {
+        src: 'public/lib/style.css',
+        dest: 'public/lib/style.min.css'
+      }
     },
 
     watch: {
@@ -112,7 +124,6 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('deploy', [
-    // add your deploy tasks here
     'concat'
   ]);
 
