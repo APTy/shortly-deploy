@@ -9,7 +9,7 @@ Icon
 
 # Ignore node_modules
 node_modules/*
-public/dist/*
+public/dist/app.js
 db/*
 
 # Floobits

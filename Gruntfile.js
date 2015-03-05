@@ -5,7 +5,7 @@ module.exports = function(grunt) {
     concat: {
       dist: {
         src: ['public/client/*.js'],
-        dest: 'public/dist/shortly-express.js'
+        dest: 'public/dist/app.js'
       }
     },
 
