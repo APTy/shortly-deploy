@@ -6,29 +6,61 @@ mongoose.connect('mongodb://localhost/shortly');
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function (callback) {
+// db.once('open', function (callback) {
 
-  var Schema = mongoose.Schema;
-  var ObjectId = Schema.ObjectId;
+  // var Schema = mongoose.Schema;
+  // var ObjectId = Schema.ObjectId;
 
-  var User = new Schema({
-    id: ObjectId,
-    username: {type: String, unique: true},
-    password: String
-  });
+  // var userSchema = new Schema({
+  //   id: ObjectId,
+  //   username: {type: String, unique: true},
+  //   password: String
+  // });
 
-  var Url = new Schema({
-    id: ObjectId,
-    url: String,
-    base_url: String,
-    code: String,
-    title: String,
-    visits: Number
-  });
+  // var urlSchema = new Schema({
+  //   id: ObjectId,
+  //   url: String,
+  //   base_url: String,
+  //   code: String,
+  //   title: String,
+  //   visits: Number
+  // });
 
-});
+  // userSchema.methods.comparePassword = function(attemptedPassword, callback) {
+  //   console.log('compare password');
+  //   // if (attemptedPassword === this.password) {
+  //   //   callback(true);
+  //   // }
+  // };
+
+  // var User = mongoose.model('User', userSchema);
+  // var Url = mongoose.model('Url', urlSchema);
+
+  // exports.Url = Url;
+  // exports.User = User;
+  exports.db = db;
+// });
 
 
+// var User = db.Model.extend({
+//   tableName: 'users',
+//   hasTimestamps: true,
+//   initialize: function(){
+//     this.on('creating', this.hashPassword);
+//   },
+//   comparePassword: function(attemptedPassword, callback) {
+//     bcrypt.compare(attemptedPassword, this.get('password'), function(err, isMatch) {
+//       callback(isMatch);
+//     });
+//   },
+//   hashPassword: function(){
+//     var cipher = Promise.promisify(bcrypt.hash);
+//     return cipher(this.get('password'), null, null).bind(this)
+//       .then(function(hash) {
+//         this.set('password', hash);
+//       });
+//   }
+// });
 
 
 // var db = Bookshelf.initialize({
@@ -72,4 +104,3 @@ db.once('open', function (callback) {
 //   }
 // });
 
-module.exports = db;
