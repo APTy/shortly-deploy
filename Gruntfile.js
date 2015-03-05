@@ -113,9 +113,9 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('upload', function(n) {
-    if(grunt.option('prod')) {[
-      'concat'
-    ]} else {
+    if(grunt.option('prod')) {
+      ['concat']
+    } else {
       grunt.task.run([ 'server-dev' ]);
     }
   });
